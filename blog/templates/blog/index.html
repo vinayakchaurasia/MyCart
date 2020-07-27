@@ -1,35 +1,105 @@
 {% extends 'blog/basic.html' %}
 
 {% block body %}
-<div class="container">
+<div class="container-fluid px-0">
 
+    <div class="container-fluid px-0">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="header-area move">
 
-<div class="row my-2">
-    {% for item in myposts %}
+                        <h1 class="jumbotron-heading"><span id="typed" class="animate"></span></h1>
 
-        <div class="col-md-6">
-            <div
-                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">{{item.head0}}</strong>
-                    <h3 class="mb-0">{{item.title}}</h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">{{item.head1}}</p>
-                    <a href="blogpost/{{item.post_id}}" class="stretched-link">Continue reading</a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img src="/media/{{item.thumbnail}}" class="bd-placeholder-img" width="200" height="250"
-                        aria-label="Placeholder: Thumbnail"/>
-
+                    </div>
+                    <img class="d-block w-100 "  src="/media/vin/2.jpg"  height="550px"   alt="First slide">
                 </div>
             </div>
         </div>
-{% if forloop.counter|divisibleby:2 %}
-    </div><div class="row my-2">
-    {% endif %}
 
-    {% endfor %}
 
-</div>
+        <style>
+            carousel slide {}
 
-{% endblock %}
+            .header-area h1 span {
+                color: #26261f;
+                font-size: 50px;
+                font-family: poppins;
+                text-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+            }
+
+            .move {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+        </style>
+        </head>
+
+        <script src="typed.js"></script>
+        <script type="module">
+            var typed = new Typed('.animate', {
+                strings: [
+                    "Hello,",
+                    "I am Vinayak Chaurasia",
+                    "Welcome To My Website..."
+                ],
+                typeSpeed: 50,
+                backSpeed: 50,
+                loop: true
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    </div>
+
+
+    <!-- container for blogs -->
+
+
+    <div class="container-fluid px-0">
+         <div class="container center">
+
+            <div class="row my-2 ">
+                {% for item in myposts %}
+
+                <style>
+                    .center {
+                        margin: auto;
+                        width: 100%;
+                        padding: 5px;
+                    }
+                </style>
+
+                <div class="col-md-6">
+                    <div
+                        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-primary">{{item.head0}}</strong>
+                            <h3 class="mb-0">{{item.title}}</h3>
+                            <div class="mb-1 text-muted">Nov 12</div>
+                            <p class="card-text mb-auto">{{item.head1}}</p>
+                            <a href="blogpost/{{item.post_id}}" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <img src="/media/{{item.thumbnail}}" class="bd-placeholder-img" width="200" height="250"
+                                aria-label="Placeholder: Thumbnail" />
+
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:2 %}
+            </div>
+            <div class="row my-2">
+                {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        {% endblock %}
